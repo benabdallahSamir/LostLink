@@ -1,19 +1,16 @@
 package main;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.LineBorder;
-import com.toedter.calendar.JDateChooser;
-import java.beans.*;
-import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 
 public class ReportPage extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	Main main = null ;
-	private JDateChooser dateChooser = new JDateChooser();
 	private JTextField founderNameInput = new JTextField();
 	private JTextField founderPhoneNumberInput = new JTextField();
 	private JTextField itemNameInput = new JTextField();
@@ -28,7 +25,6 @@ public class ReportPage extends JPanel {
 	private String itemlocation = "";
 	private String itemdescription = "";
 	private String itemimage = "";
-	private String date = "" ; 
 	public ReportPage(Main main) {
 		this();
 		this.main = main;
@@ -42,17 +38,11 @@ public class ReportPage extends JPanel {
 		itemlocation = itemLocationInput.getText().toString();
 		itemdescription = itemDescriptionInput.getText().toString();
 		itemimage = itemImageInput.getText().toString();
-		// get date 		
-		if (dateChooser.getDate() != null)
-			date = new SimpleDateFormat("dd-MM-yyyy").format(dateChooser.getDate());
-		else 
-			date = "";
 		boolean isInputsEmpty = foundername.isEmpty() || 
 				founderphonenumber.isEmpty() ||
 				itemname.isEmpty() ||
 				itemlocation.isEmpty() ||
 				itemimage.isEmpty() ||
-				date.isEmpty() ||
 				itemdescription.isEmpty() ;
 		boolean isPhoneNumberCorrect = Founder.isPhoneNumberCorrect(founderphonenumber);
 		if (!isInputsEmpty && isPhoneNumberCorrect) {
@@ -165,7 +155,7 @@ public class ReportPage extends JPanel {
 				if (!validateConfirm.isConfirm) return;
 				// create item
 				Founder founder = new Founder(foundername, founderphonenumber);
-				Item item = new Item(main.items.getLastId(), itemname,itemdescription, itemlocation, itemimage, date, founder);
+				Item item = new Item(main.items.getLastId(), itemname,itemdescription, itemlocation, itemimage, founder);
 				main.items.addItem(item);
 				// reset intputs
 				founderNameInput.setText("");
@@ -174,7 +164,6 @@ public class ReportPage extends JPanel {
 				itemLocationInput.setText("");
 				itemDescriptionInput.setText("");
 				itemImageInput.setText("");
-				dateChooser.setDate(null);
 			}
 		});
 		
@@ -199,7 +188,6 @@ public class ReportPage extends JPanel {
 				itemLocationInput.setText("");
 				itemDescriptionInput.setText("");
 				itemImageInput.setText("");
-				dateChooser.setDate(null);
 			}
 		});
 		ResetButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -214,7 +202,7 @@ public class ReportPage extends JPanel {
 		JPanel itemForm = new JPanel();
 		itemForm.setOpaque(false);
 		form.add(itemForm, BorderLayout.CENTER);
-		itemForm.setLayout(new GridLayout(8, 0, 0, 0));
+		itemForm.setLayout(new GridLayout(7, 0, 0, 0));
 		
 		// item title
 		
@@ -285,31 +273,6 @@ public class ReportPage extends JPanel {
 		itemLocationInput.setBorder(new LineBorder(new Color(9, 21, 64)));
 		itemLocationInput.setBounds(147, 10, 213, 20);
 		itemLocationContainer.add(itemLocationInput);
-		
-		// item date field
-		
-		JPanel itemDateContainer = new JPanel();
-		itemDateContainer.setLayout(null);
-		itemDateContainer.setOpaque(false);
-		itemForm.add(itemDateContainer);
-		
-		JLabel itemDateLabel = new JLabel("Item Date:*");
-		itemDateLabel.setForeground(new Color(9, 21, 64));
-		itemDateLabel.setPreferredSize(new Dimension(79, 20));
-		itemDateLabel.setMinimumSize(new Dimension(37, 16));
-		itemDateLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		itemDateLabel.setBounds(20, 11, 117, 14);
-		itemDateContainer.add(itemDateLabel);
-		dateChooser.addPropertyChangeListener(new PropertyChangeListener() {
-			public void propertyChange(PropertyChangeEvent evt) {
-				hundleInputs();
-			}
-		});
-		
-		dateChooser.setDateFormatString("dd-MM-yyyy");
-        dateChooser.setBounds(147, 10, 213, 20);
-		dateChooser.setFont(new Font("Tahoma", Font.BOLD, 14));
-        itemDateContainer.add(dateChooser);
 		
         // item description field
         

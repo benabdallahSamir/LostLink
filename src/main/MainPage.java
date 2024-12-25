@@ -20,10 +20,6 @@ public class MainPage extends JPanel {
 		reportButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			if (main.equals(null)) {
-				JOptionPane.showMessageDialog(null, "main frame is null");
-				return;
-			}
 			main.changePage(new ReportPage(main));
 			}
 		});
@@ -42,8 +38,14 @@ public class MainPage extends JPanel {
 		reportButton.add(reportTitle);
 		
 		JTextPane reportDescription = new JTextPane();
+		reportDescription.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				main.changePage(new ReportPage(main));
+			}
+		});
+		reportDescription.setFocusable(false);
 		reportDescription.setEditable(false);
-		reportDescription.setEnabled(false);
 		reportDescription.setForeground(new Color(61, 61, 140));
 		reportDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		reportDescription.setText("Help reunite someone\r\nwith their lost belongings. \r\nSubmit details of the item\r\nyou’ve found and bring\r\na smile to someone’s day.");
@@ -55,10 +57,6 @@ public class MainPage extends JPanel {
 		searchButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (main.equals(null)) {
-					JOptionPane.showMessageDialog(null, "main frame is null");
-					return;
-				}
 				main.changePage(new SearchePage(main));
 			}
 		});
@@ -77,8 +75,14 @@ public class MainPage extends JPanel {
 		searchButton.add(searchTitle);
 		
 		JTextPane searchDescription = new JTextPane();
+		searchDescription.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				main.changePage(new SearchePage(main));
+			}
+		});
+		searchDescription.setFocusable(false);
 		searchDescription.setEditable(false);
-		searchDescription.setEnabled(false);
 		searchDescription.setText("Lost something important? \r\nBrowse reported found items \r\nand take a step closer\r\nto retrieving what’s yours.");
 		searchDescription.setOpaque(false);
 		searchDescription.setForeground(new Color(61, 61, 140));

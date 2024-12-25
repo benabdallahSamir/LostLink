@@ -18,7 +18,6 @@ public class DetailsPage extends JPanel {
 	private JTextPane descriptionLabel = new JTextPane();
 	private JTextPane locationLabel = new JTextPane();
 	private JLabel contactLabel = new JLabel();
-	private JLabel dateLabel = new JLabel();
 	public DetailsPage(Main main , int id) {
 		this();
 		Item item = main.items.searchItem(id);
@@ -26,7 +25,6 @@ public class DetailsPage extends JPanel {
 		itemNameLabel.setText(item.getName());
 		locationLabel.setText(item.getLocation());
 		descriptionLabel.setText(item.getDescription());
-		dateLabel.setText(item.getDate());
 		contactLabel.setText(item.founder.getPhoneNumber());
  	}
 	public DetailsPage() {
@@ -74,26 +72,15 @@ public class DetailsPage extends JPanel {
 		lblLocation.setBounds(10, 125, 107, 14);
 		container.add(lblLocation);
 		
-		JLabel lblFoundDate = new JLabel("Found date :");
-		lblFoundDate.setForeground(new Color(255, 81, 140));
-		lblFoundDate.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblFoundDate.setBounds(11, 210, 107, 14);
-		container.add(lblFoundDate);
-		
-		dateLabel.setForeground(new Color(9, 21, 64));
-		dateLabel.setFont(new Font("Dialog", Font.PLAIN, 13));
-		dateLabel.setBounds(10, 228, 107, 14);
-		container.add(dateLabel);
-		
 		JLabel lblPhoneNumber = new JLabel("Contact");
 		lblPhoneNumber.setForeground(new Color(255, 81, 140));
 		lblPhoneNumber.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblPhoneNumber.setBounds(10, 252, 107, 14);
+		lblPhoneNumber.setBounds(9, 203, 107, 14);
 		container.add(lblPhoneNumber);
 		
 		contactLabel.setForeground(new Color(9, 21, 64));
 		contactLabel.setFont(new Font("Dialog", Font.PLAIN, 13));
-		contactLabel.setBounds(11, 267, 107, 14);
+		contactLabel.setBounds(10, 218, 107, 14);
 		container.add(contactLabel);
 		
 		JLabel title = new JLabel("Item Details ");

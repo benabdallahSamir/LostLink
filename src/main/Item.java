@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 public class Item {
 	private int id ; 
-	private String location , name , img , date , description;
+	private String location , name , img , description;
 	public Founder founder ;
 	
 	public static ImageIcon genImage (String path) {
@@ -21,10 +21,9 @@ public class Item {
 		ImageIcon scaledIcon = new ImageIcon(scaledImage);
 		 return scaledIcon;
 	}
-	public Item (int id , String name ,String description, String location , String img , String date , Founder founder) {
+	public Item (int id , String name ,String description, String location , String img , Founder founder) {
 		this.id = id ;
 		this.name = name ;
-		this.date = date ; 
 		this.description = description;
 		this.founder = founder ;
 		this.img = img ; 
@@ -42,12 +41,6 @@ public class Item {
 	}
 	public void setLocation(String location) {
 		this.location = location;
-	}
-	public String getDate() {
-		return date;
-	}
-	public void setDate(String date) {
-		this.date = date;
 	}
 	public String getImg() {
 		return img;
