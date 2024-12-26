@@ -13,6 +13,7 @@ public class Main extends JFrame {
 	private JPanel container = new JPanel();
 	private JButton returnButton = new JButton();
 	public Items items = new Items();
+	public String mainPath = System.getProperty("user.dir");
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -61,7 +62,7 @@ public class Main extends JFrame {
 		mainTitle.setFont(new Font("Tahoma", Font.BOLD, 24));
 		navigateur.add(mainTitle);
 		
-		returnButton.setIcon(Item.genImage("C:\\Users\\samir\\Documents\\desktopApp\\Ihm\\src\\main\\returnPng.png",30,30));
+		returnButton.setIcon(Item.genImage(mainPath+"\\src\\main\\returnPng.png",30,30));
 		returnButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -22,6 +22,7 @@ public class SearchePage extends JPanel {
 	Main main ;
 	private JTextField searchInput;
 	private JPanel itemsContainer = new JPanel();
+	private JButton searchButton = new JButton();
 	public void addItem (ArrayList<Item> items) {
 		itemsContainer.removeAll();
 		for (int i=0 ; i<items.size();i++) {
@@ -32,6 +33,7 @@ public class SearchePage extends JPanel {
 	public SearchePage(Main main) {
 		this();
 		this.main = main ;
+		searchButton.setIcon(Item.genImage(main.mainPath+"\\src\\main\\searchPng.png",15,15));
 		ArrayList<Item> items = main.items.showItems();
 		addItem(items);
 	}
@@ -72,7 +74,7 @@ public class SearchePage extends JPanel {
 		searchContainer.add(searchInput);
 		searchInput.setColumns(10);
 		
-		JButton searchButton = new JButton();
+		
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String value = searchInput.getText();
@@ -80,7 +82,6 @@ public class SearchePage extends JPanel {
 				addItem(itemsSearched);
 			}
 		});
-		searchButton.setIcon(Item.genImage("C:\\Users\\samir\\Documents\\desktopApp\\Ihm\\src\\main\\searchPng.png",15,15));
 		searchButton.setBorder(new LineBorder(new Color(9, 21, 64), 2, true));
 		searchButton.setBackground(new Color(61, 61, 140));
 		searchButton.setBounds(231, 11, 30, 30);
