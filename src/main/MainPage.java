@@ -17,6 +17,7 @@ public class MainPage extends JPanel {
 		setOpaque(false);
 		setLayout(null);
 		JPanel reportButton = new JPanel();
+		reportButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		reportButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -54,6 +55,7 @@ public class MainPage extends JPanel {
 		reportButton.add(reportDescription);
 		
 		JPanel searchButton = new JPanel();
+		searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		searchButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

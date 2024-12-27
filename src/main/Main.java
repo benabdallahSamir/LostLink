@@ -5,15 +5,15 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.border.LineBorder;
 
 public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JPanel container = new JPanel();
-	private JButton returnButton = new JButton();
+	private JButton returnButton = new JButton("Return");
 	public Items items = new Items();
-	public String mainPath = System.getProperty("user.dir");
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -30,6 +30,9 @@ public class Main extends JFrame {
 	
 	
 	public void changePage (Component page) {
+		returnButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		returnButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		returnButton.setForeground(Color.WHITE);
 		returnButton.setVisible(!(page instanceof MainPage));
 		container.removeAll();
 		container.add(page);
@@ -56,13 +59,19 @@ public class Main extends JFrame {
 		navigateur.setLayout(null);
 		
 		JLabel mainTitle = new JLabel("LostLink");
-		mainTitle.setBounds(278, 0, 106, 78);
+		mainTitle.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				goToMain();
+			}
+		});
+		mainTitle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		mainTitle.setBounds(278, 30, 106, 27);
 		mainTitle.setPreferredSize(new Dimension(40, 16));
 		mainTitle.setForeground(new Color(171, 210, 250));
 		mainTitle.setFont(new Font("Tahoma", Font.BOLD, 24));
 		navigateur.add(mainTitle);
 		
-		returnButton.setIcon(Item.genImage(mainPath+"\\src\\main\\returnPng.png",30,30));
 		returnButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -70,9 +79,9 @@ public class Main extends JFrame {
 			}
 		});
 		returnButton.setOpaque(false);
-		returnButton.setBorder(null);
+		returnButton.setBorder(new LineBorder(new Color(240, 240, 240), 1, true));
 		returnButton.setBackground(new Color(0, 0, 0, 0));
-		returnButton.setBounds(10, 11, 30, 58);
+		returnButton.setBounds(10, 30, 99, 27);
 		navigateur.add(returnButton);
 		
 		

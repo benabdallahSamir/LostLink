@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.Cursor;
 
 public class SearchePage extends JPanel {
 
@@ -22,7 +23,7 @@ public class SearchePage extends JPanel {
 	Main main ;
 	private JTextField searchInput;
 	private JPanel itemsContainer = new JPanel();
-	private JButton searchButton = new JButton();
+	private JButton searchButton = new JButton("search");
 	public void addItem (ArrayList<Item> items) {
 		itemsContainer.removeAll();
 		for (int i=0 ; i<items.size();i++) {
@@ -33,7 +34,6 @@ public class SearchePage extends JPanel {
 	public SearchePage(Main main) {
 		this();
 		this.main = main ;
-		searchButton.setIcon(Item.genImage(main.mainPath+"\\src\\main\\searchPng.png",15,15));
 		ArrayList<Item> items = main.items.showItems();
 		addItem(items);
 	}
@@ -73,6 +73,9 @@ public class SearchePage extends JPanel {
 		searchInput.setBorder(new LineBorder(new Color(9, 21, 64), 1, true));
 		searchContainer.add(searchInput);
 		searchInput.setColumns(10);
+		searchButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		searchButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+		searchButton.setForeground(new Color(255, 255, 255));
 		
 		
 		searchButton.addActionListener(new ActionListener() {
@@ -83,8 +86,8 @@ public class SearchePage extends JPanel {
 			}
 		});
 		searchButton.setBorder(new LineBorder(new Color(9, 21, 64), 2, true));
-		searchButton.setBackground(new Color(61, 61, 140));
-		searchButton.setBounds(231, 11, 30, 30);
+		searchButton.setBackground(new Color(9, 21, 64));
+		searchButton.setBounds(231, 11, 81, 30);
 		searchContainer.add(searchButton);
 		
 		JScrollPane scrollPane = new JScrollPane();
