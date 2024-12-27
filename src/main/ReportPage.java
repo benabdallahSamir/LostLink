@@ -29,9 +29,9 @@ public class ReportPage extends JPanel {
 		this();
 		this.main = main;
 	}
-	private void hundleInputs () {
-		validateButton.setEnabled(false);
-		validateButton.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+	private boolean hundleInputs () {
+		validateButton.setBackground(Color.gray);
+		validateButton.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		foundername = founderNameInput.getText().toString(); 
 		founderphonenumber = founderPhoneNumberInput.getText().toString();
 		itemname = itemNameInput.getText().toString();
@@ -46,10 +46,11 @@ public class ReportPage extends JPanel {
 				itemdescription.isEmpty() ;
 		boolean isPhoneNumberCorrect = Founder.isPhoneNumberCorrect(founderphonenumber);
 		if (!isInputsEmpty && isPhoneNumberCorrect) {
-			
-			validateButton.setEnabled(true);
+			validateButton.setBackground(new Color(9,21,64));
 			validateButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			return true ;
 		}
+		return false;
 	}
 	public ReportPage() {
 		setOpaque(false);
@@ -139,6 +140,12 @@ public class ReportPage extends JPanel {
 		JPanel space = new JPanel();
 		space.setOpaque(false);
 		founderForm.add(space);
+		space.setLayout(null);
+		
+		JLabel lblExemple = new JLabel("exemple: 0123456789");
+		lblExemple.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblExemple.setBounds(0, 0, 125, 14);
+		space.add(lblExemple);
 		
 		JPanel sapce_2 = new JPanel();
 		sapce_2.setOpaque(false);
@@ -150,7 +157,7 @@ public class ReportPage extends JPanel {
 		buttonContainer.setLayout(null);
 		validateButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				if(!hundleInputs()) return ;
 				ValidateConfirm validateConfirm = new ValidateConfirm(main);
 				if (!validateConfirm.isConfirm) return;
 				// create item
@@ -164,15 +171,15 @@ public class ReportPage extends JPanel {
 				itemLocationInput.setText("");
 				itemDescriptionInput.setText("");
 				itemImageInput.setText("");
+				// go to main
+				main.changePage(new MainPage(main));
 			}
 		});
-		
+
 		validateButton.setBorder(new LineBorder(new Color(9, 21, 64), 2, true));
 		validateButton.setForeground(new Color(255, 255, 255));
-		validateButton.setEnabled(false);
-		validateButton.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
 		validateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		validateButton.setBackground(new Color(9, 21, 64));
+		validateButton.setBackground(Color.gray);
 		validateButton.setBounds(57, 12, 89, 23);
 		buttonContainer.add(validateButton);
 		

@@ -26,8 +26,16 @@ public class SearchePage extends JPanel {
 	private JButton searchButton = new JButton("search");
 	public void addItem (ArrayList<Item> items) {
 		itemsContainer.removeAll();
-		for (int i=0 ; i<items.size();i++) {
-			itemsContainer.add(new Card(main , items.get(i).getId()));
+		if (items.size()==0 ) {
+			JLabel itemNotFound = new JLabel("Item not found"); 
+			itemNotFound.setFont(new Font("arial", Font.BOLD, 20));
+			itemNotFound.setHorizontalAlignment(SwingConstants.CENTER);
+			itemsContainer.add(new JPanel());
+			itemsContainer.add(itemNotFound);
+		}else {			
+			for (int i=0 ; i<items.size();i++) {
+				itemsContainer.add(new Card(main , items.get(i).getId()));
+			}
 		}
 		itemsContainer.updateUI();
 	}
